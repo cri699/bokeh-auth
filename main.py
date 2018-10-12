@@ -22,7 +22,7 @@ GOOGLE_CLIENT_SECRET = cfg['GOOGLE_CLIENT_SECRET']  # your google client secret
 BOKEH_SECRET = cfg['BOKEH_SECRET']  # your bokeh secret
 BOKEH_URL = cfg['BOKEH_URL']  # your bokeh url redirect
 ALLOWED_DOMAIN = cfg['ALLOWED_DOMAIN']  # your domain
-app.secret_key = cfg['APP_SECRET']  # your app secret key
+app.secret_key = cfg['APP_SECRET_KEY']  # your app secret key
 
 blueprint = make_google_blueprint(
     client_id=GOOGLE_CLIENT_ID,

@@ -4,5 +4,5 @@ GOOGLE_CLIENT_SECRET: replaceGoogleClientSecret
 BOKEH_SECRET: bokehSECRET
 BOKEH_URL:  http://example.com
 ALLOWED_DOMAIN: @domain.com
-app.secret_key: replaceAppSecret
+APP_SECRET_KEY: replaceAppSecret
 #[END config]
