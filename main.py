@@ -4,17 +4,25 @@ import re
 import os
 from flask_dance.contrib.google import make_google_blueprint, google
 from oauthlib.oauth2 import InvalidGrantError, TokenExpiredError
+import yaml
 
 app = Flask(__name__)
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
 os.environ['OAUTHLIB_RELAX_TOKEN_SCOPE'] = '1'
 
-GOOGLE_CLIENT_ID = " "          # your google client id
-GOOGLE_CLIENT_SECRET = " "      # your google client secret
-BOKEH_SECRET = " "              # your bokeh secret
-BOKEH_URL = " "                 # your bokeh url redirect
-ALLOWED_DOMAIN = "@domain.com"  # your domain
-app.secret_key = "supersekrit"  # your app secret key
+app_path = os.path.dirname(os.path.realpath(__file__))
+with open(os.path.join(app_path, "config.yaml".format()), 'r') as stream:
+    try:
+        cfg = yaml.load(stream)
+    except yaml.YAMLError as exc:
+        print(exc)
+
+GOOGLE_CLIENT_ID = cfg['GOOGLE_CLIENT_ID']  # your google client id
+GOOGLE_CLIENT_SECRET = cfg['GOOGLE_CLIENT_SECRET']  # your google client secret
+BOKEH_SECRET = cfg['BOKEH_SECRET']  # your bokeh secret
+BOKEH_URL = cfg['BOKEH_URL']  # your bokeh url redirect
+ALLOWED_DOMAIN = cfg['ALLOWED_DOMAIN']  # your domain
+app.secret_key = cfg['APP_SECRET']  # your app secret key
 
 blueprint = make_google_blueprint(
     client_id=GOOGLE_CLIENT_ID,
