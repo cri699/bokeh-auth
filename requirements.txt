@@ -1,0 +1,4 @@
+bokeh==0.13.0
+Flask==0.11.1
+Jinja2==2.10
+Flask-Dance==1.1.0
