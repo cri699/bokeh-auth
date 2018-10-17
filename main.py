@@ -44,7 +44,6 @@ def index():
         resp = google.get("/oauth2/v2/userinfo")
         assert resp.ok, resp.text
         domain = re.search("@[\w.]+", resp.json()["email"])
-        print(domain.group())
     except (InvalidGrantError, TokenExpiredError) as e:  # or maybe any OAuth2Error
         return redirect(url_for("google.login"))
 
